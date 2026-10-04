@@ -845,3 +845,16 @@ a {
 .stock-card:nth-child(7) { animation-delay: 0.26s; }
 .stock-card:nth-child(8) { animation-delay: 0.30s; }
 .stock-card:nth-child(9) { animation-delay: 0.34s; }
+
+
+
+/* ==========================================
+   WHATSAPP ICON (inline SVG)
+   ========================================== */
+
+.wa-icon {
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  color: currentColor;
+}
