@@ -476,48 +476,32 @@
 
 
     /*
-      Create one stock card.
+      Create one public stock card.
+      Only public stock information is shown.
     */
 
     function createStockCard(stock) {
 
-      const product =
-        stock.product || "Umusaruro";
-
-
-      const icon =
-        cropIcons[product] || "🌾";
-
+      const product = stock.product || "Umusaruro";
+      const variety = stock.variety || "";
+      const icon = cropIcons[product] || "🌾";
 
       const image =
         stock.media_url ||
         cropImages[product] ||
         "images/ibigori.jpg";
 
+      const quantity = formatQuantity(
+        stock.quantity,
+        stock.unit || "kg"
+      );
 
-      const description =
-        stock.description ||
-        `Umusaruro wa ${product.toLowerCase()}`;
+      const whatsappLink = createWhatsAppLink(
+        variety ? `${product} - ${variety}` : product
+      );
 
-
-      const quantity =
-        formatQuantity(
-          stock.quantity,
-          stock.unit || "kg"
-        );
-
-
-      const whatsappLink =
-        createWhatsAppLink(product);
-
-
-      const article =
-        document.createElement("article");
-
-
-      article.className =
-        "stock-card";
-
+      const article = document.createElement("article");
+      article.className = "stock-card";
 
       article.innerHTML = `
 
@@ -525,7 +509,7 @@
 
           <img
             src="${escapeHtml(image)}"
-            alt="${escapeHtml(product)} ya Zao Deal"
+            alt="${escapeHtml(product)}${variety ? " - " + escapeHtml(variety) : ""} ya Zao Deal"
             loading="lazy"
             onerror="this.style.display='none'"
           >
@@ -536,23 +520,16 @@
 
         </div>
 
-
         <div class="stock-content">
 
           <div class="crop-icon">
             ${icon}
           </div>
 
-
           <h3>
             ${escapeHtml(product)}
+            ${variety ? ` — ${escapeHtml(variety)}` : ""}
           </h3>
-
-
-          <p class="stock-description">
-            ${escapeHtml(description)}
-          </p>
-
 
           <div class="quantity-box">
 
@@ -560,13 +537,11 @@
               Ingano ihari
             </span>
 
-
             <strong>
               ${escapeHtml(quantity)}
             </strong>
 
           </div>
-
 
           <a
             href="${whatsappLink}"
@@ -581,11 +556,65 @@
 
       `;
 
-
       return article;
-
     }
 
+
+    /*
+      Group rows with the same product + variety + unit.
+      Their quantities are added together.
+    */
+
+    function groupStock(stockItems) {
+
+      const groups = new Map();
+
+      stockItems.forEach((stock) => {
+
+        const product =
+          String(stock.product || "Umusaruro").trim();
+
+        const variety =
+          String(stock.variety || "").trim();
+
+        const unit =
+          String(stock.unit || "kg").trim();
+
+        const key =
+          `${product.toLowerCase()}|${variety.toLowerCase()}|${unit.toLowerCase()}`;
+
+        const quantity =
+          Number(stock.quantity);
+
+        if (!groups.has(key)) {
+
+          groups.set(key, {
+            ...stock,
+            product,
+            variety,
+            unit,
+            quantity:
+              Number.isFinite(quantity) ? quantity : 0
+          });
+
+          return;
+        }
+
+        const existing = groups.get(key);
+
+        if (Number.isFinite(quantity)) {
+          existing.quantity += quantity;
+        }
+
+        if (!existing.media_url && stock.media_url) {
+          existing.media_url = stock.media_url;
+          existing.media_type = stock.media_type;
+        }
+
+      });
+
+      return Array.from(groups.values());
+    }
 
 
     /*
@@ -650,12 +679,18 @@
           Add each available stock item.
         */
 
-        data.stock.forEach(
+        /*
+          Group stock before displaying it.
+        */
+
+        const groupedStock =
+          groupStock(data.stock);
+
+        groupedStock.forEach(
           (stock) => {
 
             const card =
               createStockCard(stock);
-
 
             stockGrid.appendChild(card);
 
