@@ -366,15 +366,46 @@
       does not have a media_url from R2.
     */
 
-    const cropImages = {
+    /*
+  Base URL where the image files actually live.
+  They are hosted on the farmer site,
+  NOT on this buyer site.
+*/
 
-      "Ibigori": "images/ibigori.jpg",
+const IMAGE_BASE = "https://zaodealfarmer.pages.dev";
 
-      "Ibishyimbo": "images/ibishyimbo.jpg",
+/*
+  Bean variety → image.
+  Each bean card is grouped by product + variety,
+  so this is what we use first.
+*/
 
-      "Amasaka": "images/amasaka.jpg"
+const varietyImages = {
 
-    };
+  "shyushya": "images/Shyushya.png",
+
+  "colta":    "images/colta.png",
+
+  "zahabu":   "images/zahabu.png",
+
+  "mutiki":   "images/Mutiki.png"
+
+};
+
+/*
+  Fallback when the card has no variety
+  (Ibigori, Amasaka, plain Ibishyimbo).
+*/
+
+const cropImages = {
+
+  "Ibigori":    "images/ibigori.jpg",
+
+  "Ibishyimbo": "images/ibishyimbo.svg",
+
+  "Amasaka":    "images/amasaka.jpg"
+
+};
 
 
     /*
@@ -486,10 +517,30 @@
       const variety = stock.variety || "";
       const icon = cropIcons[product] || "🌾";
 
-      const image =
-        stock.media_url ||
-        cropImages[product] ||
-        "images/ibigori.jpg";
+      /*
+  Turn any path into a full URL against IMAGE_BASE.
+*/
+
+function makeAbsolute(path) {
+
+  if (!path) return "";
+
+  if (/^https?:\/\//i.test(path)) return path;
+
+  return IMAGE_BASE + "/" + String(path).replace(/^\/+/, "");
+
+}
+
+const varietyKey =
+  String(stock.variety || "").trim().toLowerCase();
+
+const image = makeAbsolute(
+  (stock.media_url && /^https?:\/\//i.test(stock.media_url))
+    ? stock.media_url
+    : (varietyImages[varietyKey] ||
+       cropImages[product] ||
+       "images/ibigori.jpg")
+);
 
       const quantity = formatQuantity(
         stock.quantity,
@@ -511,7 +562,7 @@
             src="${escapeHtml(image)}"
             alt="${escapeHtml(product)}${variety ? " - " + escapeHtml(variety) : ""} ya Zao Deal"
             loading="lazy"
-            onerror="this.style.display='none'"
+           onerror="this.onerror=null;this.src='https://zaodealfarmer.pages.dev/images/ibigori.jpg';"
           >
 
           <span class="availability">
