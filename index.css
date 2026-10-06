@@ -183,7 +183,8 @@ a {
   overflow: hidden;
   color: white;
   isolation: isolate;
-  min-height: 520px;
+  min-height: 560px;
+  padding-bottom: 130px; /* room for chips */
 }
 
 /* Sliding background layers */
@@ -259,11 +260,11 @@ a {
   pointer-events: none;
 }
 
-/* Hero content */
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 56px 0 96px;
+  padding-top: 32px;   /* tighter — heading sits closer to top */
+  padding-bottom: 24px;
   max-width: 780px;
 }
 
@@ -498,19 +499,6 @@ a {
   background: var(--green-700);
 }
 
-/* Curved white divider under hero */
-.hero-curve {
-  position: absolute;
-  z-index: 4;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 40px;
-  background: var(--bg);
-  border-top-left-radius: 50% 100%;
-  border-top-right-radius: 50% 100%;
-  pointer-events: none;
-}
 
 @media (min-width: 768px) {
   .hero {
@@ -521,11 +509,7 @@ a {
     padding: 90px 0 130px;
   }
 
-  .hero-badge {
-    font-size: 12px;
-    padding: 8px 16px;
-    margin-bottom: 26px;
-  }
+
 
   .hero-description {
     font-size: 18px;
@@ -561,9 +545,7 @@ a {
     font-size: 14px;
   }
 
-  .hero-curve {
-    height: 60px;
-  }
+
 }
 
 @media (min-width: 1024px) {
