@@ -61,34 +61,11 @@
   <!-- HERO -->
   <main>
     <section class="hero">
-      <!-- Sliding backgrounds -->
-      <div class="hero-slides" aria-hidden="true">
-        <div
-          class="hero-slide"
-          style="background-image:url('https://zaodealfarmer.pages.dev/images/ibigori.jpg')"
-        ></div>
-        <div
-          class="hero-slide"
-          style="background-image:url('https://zaodealfarmer.pages.dev/images/colta.png')"
-        ></div>
-        <div
-          class="hero-slide"
-          style="background-image:url('https://zaodealfarmer.pages.dev/images/amasaka.jpg')"
-        ></div>
-      </div>
+      <!-- Static background image -->
+      <div class="hero-bg" aria-hidden="true"></div>
+      
       <!-- Dark green overlay -->
       <div class="hero-overlay" aria-hidden="true"></div>
-
-      <!-- Navigation Arrows -->
-      <button class="hero-arrow hero-arrow-prev" aria-label="Previous slide">‹</button>
-      <button class="hero-arrow hero-arrow-next" aria-label="Next slide">›</button>
-
-      <!-- Carousel Dots -->
-      <div class="hero-dots" aria-hidden="true">
-        <span class="hero-dot active"></span>
-        <span class="hero-dot"></span>
-        <span class="hero-dot"></span>
-      </div>
 
       <!-- Text content -->
       <div class="container hero-content">
@@ -108,54 +85,101 @@
         </a>
       </div>
 
-      <!-- Category chips -->
-      <div class="hero-categories">
-        <a href="#stock" class="hero-cat">
-          <span class="hero-cat-thumb">
-            <img
-              src="https://zaodealfarmer.pages.dev/images/ibigori.jpg"
-              alt="Ibigori"
-              loading="lazy"
-            >
-          </span>
-          <span class="hero-cat-info">
-            <span class="hero-cat-name">Ibigori</span>
-            <span class="hero-cat-sub">Bihari</span>
-          </span>
-          <span class="hero-cat-arrow">›</span>
-        </a>
-        <a href="#stock" class="hero-cat">
-          <span class="hero-cat-thumb">
-            <img
-              src="https://zaodealfarmer.pages.dev/images/colta.png"
-              alt="Ibishyimbo"
-              loading="lazy"
-            >
-          </span>
-          <span class="hero-cat-info">
-            <span class="hero-cat-name">Ibishyimbo</span>
-            <span class="hero-cat-sub">Bihari</span>
-          </span>
-          <span class="hero-cat-arrow">›</span>
-        </a>
-        <a href="#stock" class="hero-cat">
-          <span class="hero-cat-thumb">
-            <img
-              src="https://zaodealfarmer.pages.dev/images/amasaka.jpg"
-              alt="Amasaka"
-              loading="lazy"
-            >
-          </span>
-          <span class="hero-cat-info">
-            <span class="hero-cat-name">Amasaka</span>
-            <span class="hero-cat-sub">Bihari</span>
-          </span>
-          <span class="hero-cat-arrow">›</span>
-        </a>
+      <!-- Marquee Category Chips Container -->
+      <div class="hero-categories-marquee">
+        <div class="marquee-track">
+          <!-- First Set -->
+          <a href="#stock" class="hero-cat">
+            <span class="hero-cat-thumb">
+              <img
+                src="https://zaodealfarmer.pages.dev/images/ibigori.jpg"
+                alt="Ibigori"
+                loading="lazy"
+              >
+            </span>
+            <span class="hero-cat-info">
+              <span class="hero-cat-name">Ibigori</span>
+              <span class="hero-cat-sub">Bihari</span>
+            </span>
+            <span class="hero-cat-arrow">›</span>
+          </a>
+          <a href="#stock" class="hero-cat">
+            <span class="hero-cat-thumb">
+              <img
+                src="https://zaodealfarmer.pages.dev/images/colta.png"
+                alt="Ibishyimbo"
+                loading="lazy"
+              >
+            </span>
+            <span class="hero-cat-info">
+              <span class="hero-cat-name">Ibishyimbo</span>
+              <span class="hero-cat-sub">Bihari</span>
+            </span>
+            <span class="hero-cat-arrow">›</span>
+          </a>
+          <a href="#stock" class="hero-cat">
+            <span class="hero-cat-thumb">
+              <img
+                src="https://zaodealfarmer.pages.dev/images/amasaka.jpg"
+                alt="Amasaka"
+                loading="lazy"
+              >
+            </span>
+            <span class="hero-cat-info">
+              <span class="hero-cat-name">Amasaka</span>
+              <span class="hero-cat-sub">Bihari</span>
+            </span>
+            <span class="hero-cat-arrow">›</span>
+          </a>
+
+          <!-- Duplicated Set for Smooth Continuous Loop -->
+          <a href="#stock" class="hero-cat" aria-hidden="true">
+            <span class="hero-cat-thumb">
+              <img
+                src="https://zaodealfarmer.pages.dev/images/ibigori.jpg"
+                alt="Ibigori"
+                loading="lazy"
+              >
+            </span>
+            <span class="hero-cat-info">
+              <span class="hero-cat-name">Ibigori</span>
+              <span class="hero-cat-sub">Bihari</span>
+            </span>
+            <span class="hero-cat-arrow">›</span>
+          </a>
+          <a href="#stock" class="hero-cat" aria-hidden="true">
+            <span class="hero-cat-thumb">
+              <img
+                src="https://zaodealfarmer.pages.dev/images/colta.png"
+                alt="Ibishyimbo"
+                loading="lazy"
+              >
+            </span>
+            <span class="hero-cat-info">
+              <span class="hero-cat-name">Ibishyimbo</span>
+              <span class="hero-cat-sub">Bihari</span>
+            </span>
+            <span class="hero-cat-arrow">›</span>
+          </a>
+          <a href="#stock" class="hero-cat" aria-hidden="true">
+            <span class="hero-cat-thumb">
+              <img
+                src="https://zaodealfarmer.pages.dev/images/amasaka.jpg"
+                alt="Amasaka"
+                loading="lazy"
+              >
+            </span>
+            <span class="hero-cat-info">
+              <span class="hero-cat-name">Amasaka</span>
+              <span class="hero-cat-sub">Bihari</span>
+            </span>
+            <span class="hero-cat-arrow">›</span>
+          </a>
+        </div>
       </div>
 
-      <!-- Organic Wave Cutout -->
-      <div class="hero-wave" aria-hidden="true"></div>
+      <!-- Straight Edge Divider (Replaces curve) -->
+      <div class="hero-straight-edge" aria-hidden="true"></div>
     </section>
 
     <!-- STOCK -->
@@ -165,7 +189,6 @@
     >
       <div class="container">
         <div class="section-heading">
-          <span class="section-logo-icon">🌱</span>
           <span class="section-label">
             UMUSARURO UHARI
           </span>
