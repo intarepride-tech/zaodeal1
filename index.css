@@ -1,5 +1,5 @@
 /* ==========================================
-   ZAO DEAL — INDEX.CSS (FULL FIXED VERSION)
+   ZAO DEAL — INDEX.CSS (STEPPED MARQUEE PAUSE)
    ========================================== */
 
 *,
@@ -148,7 +148,6 @@ a {
   background-color: var(--green-dark);
 }
 
-/* CDN Image URL for stable background rendering */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -232,7 +231,9 @@ a {
   transform: translateY(0);
 }
 
-/* MARQUEE CATEGORY TRACK */
+/* ==========================================
+   STEPPED MARQUEE WITH PAUSE AT CENTER
+   ========================================== */
 .hero-categories-marquee {
   position: absolute;
   z-index: 5;
@@ -242,6 +243,8 @@ a {
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
+  display: flex;
+  justify-content: center;
 }
 
 .marquee-track {
@@ -249,9 +252,10 @@ a {
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   width: max-content;
-  animation: marqueeContinuous 12s linear infinite;
+  /* 3 items * (2s pause + 0.5s slide) = 7.5s total loop duration */
+  animation: marqueePauseSteps 7.5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
   will-change: transform;
 }
 
@@ -259,12 +263,22 @@ a {
   animation-play-state: paused;
 }
 
-@keyframes marqueeContinuous {
-  0% {
+@keyframes marqueePauseSteps {
+  /* Item 1 centered: Hold for 2 seconds */
+  0%, 26.66% {
     transform: translateX(0);
   }
+  /* Slide to Item 2 (0.5s transition) & Hold for 2 seconds */
+  33.33%, 60% {
+    transform: translateX(calc(-100% / 6 - 8px));
+  }
+  /* Slide to Item 3 (0.5s transition) & Hold for 2 seconds */
+  66.66%, 93.33% {
+    transform: translateX(calc(-200% / 6 - 16px));
+  }
+  /* Reset seamlessly to Item 1 start */
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-300% / 6 - 24px));
   }
 }
 
@@ -630,7 +644,7 @@ a {
 }
 
 /* ==========================================
-   FOOTER
+   FOOTER (MODERNIZED & PROFESSIONAL)
    ========================================== */
 .site-footer {
   background: #071f11;
@@ -653,45 +667,66 @@ a {
 
 .footer-contact {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 30px;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;
+  margin: 0 auto 32px;
 }
 
 .footer-contact-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   padding: 12px 18px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
-  text-align: left;
-  transition: background 0.2s var(--ease);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.2s var(--ease);
 }
 
 .footer-contact-item:hover {
   background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
 }
 
 .footer-contact-icon {
-  color: var(--green-light);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(0, 150, 64, 0.25);
+  color: #22c55e;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.footer-contact-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.25;
 }
 
 .footer-contact-label {
-  font-size: 11px;
-  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-weight: 700;
+  color: #829088;
+  margin-bottom: 2px;
 }
 
 .footer-contact-value {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
 }
 
 .footer-bottom {
