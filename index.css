@@ -1,5 +1,5 @@
 /* ==========================================
-   ZAO DEAL — INDEX.CSS (STEPPED MARQUEE PAUSE)
+   ZAO DEAL — INDEX.CSS (SCROLL-SNAP STEPPED MARQUEE)
    ========================================== */
 
 *,
@@ -232,64 +232,37 @@ a {
 }
 
 /* ==========================================
-   STEPPED MARQUEE WITH PAUSE AT CENTER
+   SCROLL-SNAP CATEGORY ROW
    ========================================== */
-.hero-categories-marquee {
+.hero-categories-snap {
   position: absolute;
   z-index: 5;
   left: 0;
   right: 0;
   bottom: 20px;
   width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
   display: flex;
-  justify-content: center;
+  gap: 14px;
+  padding: 0 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-.marquee-track {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  align-items: center;
-  gap: 16px;
-  width: max-content;
-  /* 3 items * (2s pause + 0.5s slide) = 7.5s total loop duration */
-  animation: marqueePauseSteps 7.5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
-  will-change: transform;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marqueePauseSteps {
-  /* Item 1 centered: Hold for 2 seconds */
-  0%, 26.66% {
-    transform: translateX(0);
-  }
-  /* Slide to Item 2 (0.5s transition) & Hold for 2 seconds */
-  33.33%, 60% {
-    transform: translateX(calc(-100% / 6 - 8px));
-  }
-  /* Slide to Item 3 (0.5s transition) & Hold for 2 seconds */
-  66.66%, 93.33% {
-    transform: translateX(calc(-200% / 6 - 16px));
-  }
-  /* Reset seamlessly to Item 1 start */
-  100% {
-    transform: translateX(calc(-300% / 6 - 24px));
-  }
+.hero-categories-snap::-webkit-scrollbar {
+  display: none;
 }
 
 .hero-cat {
-  flex: 0 0 auto !important;
-  display: inline-flex !important;
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 14px 6px 8px;
+  padding: 6px 16px 6px 8px;
   border-radius: var(--radius-pill);
-  background: rgba(15, 25, 18, 0.65);
+  background: rgba(15, 25, 18, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -300,7 +273,7 @@ a {
 }
 
 .hero-cat:hover {
-  background: rgba(15, 25, 18, 0.85);
+  background: rgba(15, 25, 18, 0.9);
   transform: translateY(-2px);
 }
 
@@ -352,7 +325,6 @@ a {
   flex-shrink: 0;
 }
 
-/* Straight Bottom Edge Divider */
 .hero-straight-edge {
   position: absolute;
   bottom: 0;
@@ -416,7 +388,6 @@ a {
   .stock-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Dynamic Stock Cards */
 .stock-card {
   background: var(--surface);
   border-radius: var(--radius-card);
