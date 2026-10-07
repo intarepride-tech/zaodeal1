@@ -196,7 +196,7 @@ a {
 
 /* ==========================================
    HERO
-   Static first image + clean layout
+   Sliding background + clean layout
    ========================================== */
 
 .hero {
@@ -498,13 +498,6 @@ a {
   text-align: center;
   max-width: 620px;
   margin: 0 auto 32px;
-}
-
-.section-heading .sprout {
-  display: inline-block;
-  font-size: 30px;
-  margin-bottom: 8px;
-  line-height: 1;
 }
 
 .section-label {
