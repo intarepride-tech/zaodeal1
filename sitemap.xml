@@ -9,7 +9,10 @@
     <image:image>
       <image:loc>https://zaodealer.com/images/zaodeal-hero.png</image:loc>
     </image:image>
+  </url>
 
+  <url>
+    <loc>https://zaodealer.com/ibishyimbo/</loc>
   </url>
 
 </urlset>
