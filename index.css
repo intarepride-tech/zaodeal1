@@ -629,76 +629,67 @@ a {
   transform: translateY(-2px);
 }
 
-/* ==========================================
-   FOOTER
-   ========================================== */
-.site-footer {
-  background: #071f11;
-  color: white;
-  padding: 50px 0 24px;
-  text-align: center;
-}
-
-.footer-logo {
-  font-size: 22px;
-  font-weight: 900;
-  margin-bottom: 8px;
-}
-
-.footer-tagline {
-  color: #94a3b8;
-  font-size: 14px;
-  margin-bottom: 28px;
-}
-
-.footer-contact {
+/* Contact pills — aligned in a single consistent column */
+.footer-contacts {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 30px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;      /* keeps all pills the same width */
+  margin: 0 auto 28px;
 }
 
-.footer-contact-item {
+.contact-card {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 18px;
-  border-radius: 12px;
+  width: 100%;            /* all pills same width */
+  padding: 14px 18px;
+  border-radius: 999px;   /* pill shape, matches your design */
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
   text-align: left;
   transition: background 0.2s var(--ease);
 }
 
-.footer-contact-item:hover {
-  background: rgba(255, 255, 255, 0.08);
+.contact-card:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.footer-contact-icon {
-  color: var(--green-light);
+/* Icon */
+.contact-icon {
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  color: #22c55e;
 }
 
-.footer-contact-label {
-  font-size: 11px;
-  color: #94a3b8;
+/* Label + value on one line, aligned */
+.contact-text {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+  flex: 1;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.contact-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
 }
 
-.footer-contact-value {
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.footer-bottom {
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: #64748b;
-  font-size: 13px;
+.contact-value {
+  font-size: 17px;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .wa-icon {
